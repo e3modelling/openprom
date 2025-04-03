@@ -1,0 +1,3 @@
+reportVar <- function() {
+  return (TRUE)
+}
