@@ -7,7 +7,7 @@
 #' @param ... Additional arguments passed to methods.
 #' @return An object of class "magpie", or NULL if an error occurs.
 #' @examples
-#' data <- readData("inst/extdata/blabla.gdx", "iSet")
+#' data <- readData(system.file("extdata", "blabla.gdx", package = "openprom"), "iSet")
 #' @importFrom gdx readGDX
 
 #' @export
@@ -20,7 +20,7 @@ readData.gdx <- function(.path, ...) {
   tryCatch(
     {
       data <- readGDX(.path, ...)
-      return (data)
+      return(data)
     },
     error = function(e) {
       message("Error reading GDX file: ", .path)
@@ -32,7 +32,7 @@ readData.gdx <- function(.path, ...) {
 
 #' @export
 readData.imf <- function(.path, ...) { # PLACEHOLDER
-  return (TRUE)
+  return(TRUE)
 }
 
 # Helpers ---------------------------------------------------
@@ -42,16 +42,17 @@ readData.character <- function(.path, ...) {
   # to the appropriate reader method based on file type.
 
   extension <- tools::file_ext(.path)
-  switch(
-    extension,
+  switch(extension,
     gdx = readData.gdx(.path, ...),
     imf = readData.imf(.path, ...),
-    stop("Unsupported file type: ",
-         extension,
-         ". Supported types are 'gdx' and 'imf'.")
+    stop(
+      "Unsupported file type: ",
+      extension,
+      ". Supported types are 'gdx' and 'imf'."
+    )
   )
 }
 #' @export
 readData.list <- function(.path, ...) { # PLACEHOLDER
-  return (TRUE)
+  return(TRUE)
 }

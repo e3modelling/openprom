@@ -19,5 +19,5 @@ A generic function to read data files.
 Methods are provided for `.gdx` and `.imf` file types.
 }
 \examples{
-data <- readData("inst/extdata/blabla.gdx", "iSet")
+data <- readData(system.file("extdata", "blabla.gdx", package = "openprom"), "iSet")
 }
